@@ -1,0 +1,8 @@
+!!ProductDTO
+code: "123456"
+name: "simpleProduct"
+price: 1.99
+---
+code: "654321"
+name: "anotherSimpleProduct"
+price: 10.89
