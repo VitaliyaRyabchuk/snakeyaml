@@ -1,3 +1,5 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -10,11 +12,13 @@ import static java.util.Objects.isNull;
 
 public class ProductsLoader {
 
-    public List<ProductDTO> getProducts() {
-        List<ProductDTO> products = new ArrayList<>();
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductsLoader.class);
 
-        System.out.println("Reading products.yaml...");
-        Yaml yaml = new Yaml(new Constructor(ProductDTO.class));
+    public List<Product> getProducts() {
+        List<Product> products = new ArrayList<>();
+
+        LOGGER.info("Reading products.yaml...");
+        Yaml yaml = new Yaml(new Constructor(Product.class));
         try (InputStream inputStream = this.getClass().getClassLoader()
                 .getResourceAsStream("products.yaml")) {
             if (isNull(inputStream)) {
@@ -27,9 +31,9 @@ public class ProductsLoader {
         return products;
     }
 
-    private void loadProducts(final List<ProductDTO> products, final Yaml yaml, final InputStream inputStream) {
+    private void loadProducts(final List<Product> products, final Yaml yaml, final InputStream inputStream) {
         yaml.loadAll(inputStream).forEach(product -> products
-                .add((ProductDTO) product));
+                .add((Product) product));
     }
 
 }

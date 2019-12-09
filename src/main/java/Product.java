@@ -1,4 +1,4 @@
-public class ProductDTO {
+public class Product {
 
     private String code;
     private String name;
@@ -30,7 +30,7 @@ public class ProductDTO {
 
     @Override
     public String toString() {
-        return "ProductDTO{" +
+        return "Product{" +
                 "code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
